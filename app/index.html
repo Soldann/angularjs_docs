@@ -78,12 +78,12 @@
       if (user) {
         // User is signed in.
         window.location.replace("#!/editor");
-        editor = new MediumEditor('.editable', { placeholder : false}); 
+        editor = new MediumEditor('.editable'); 
 
         var userId = firebase.auth().currentUser.uid;
           if (userId) {
               firebase.database().ref('users/' + userId + '/document').once("value").then(function(snapshot){
-                document.getElementsByClassName("editable")[0].innerHTML = snapshot.val();
+                editor.setContent(snapshot.val());
               });
           }
           
