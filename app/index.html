@@ -76,6 +76,8 @@
       if (user) {
         // User is signed in.
         window.location.replace("#!/editor");
+      } else {
+        window.location.replace("#!/home");
       }
     }, function(error) {
       console.log(error);
