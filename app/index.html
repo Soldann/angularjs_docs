@@ -73,11 +73,12 @@
 
 <script type="text/javascript">
   initApp = function() {
+    var editor = null;
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
         // User is signed in.
         window.location.replace("#!/editor");
-        var editor = new MediumEditor('.editable', { placeholder : false}); 
+        editor = new MediumEditor('.editable', { placeholder : false}); 
 
         var userId = firebase.auth().currentUser.uid;
           if (userId) {
@@ -95,6 +96,9 @@
       });
 
       } else {
+        if (editor) {
+          editor.destroy();
+        }
         window.location.replace("#!/home");
       }
     }, function(error) {
@@ -102,6 +106,9 @@
     });
   };
 
+  function signOut(){
+    firebase.auth().signOut();
+  }
 </script>
 
 </body>
