@@ -22,8 +22,31 @@
   <script src="lib/angular-route/angular-route.js"></script>
   <script src="app.js"></script>
   <script src="home/home.js"></script>
+  <script src="editor/editor.js"></script>
   <script src="core/version/version.js"></script>
   <script src="core/version/version-directive.js"></script>
   <script src="core/version/interpolate-filter.js"></script>
+
+  
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyCTjZ6mXB9oxOnppp0od7ZAkuvKAA9Qabk",
+    authDomain: "angularjs-app-392a5.firebaseapp.com",
+    databaseURL: "https://angularjs-app-392a5.firebaseio.com",
+    projectId: "angularjs-app-392a5",
+    storageBucket: "angularjs-app-392a5.appspot.com",
+    messagingSenderId: "426045310726",
+    appId: "1:426045310726:web:bd773127db9482ee6b8087"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
 </body>
 </html>
