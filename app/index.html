@@ -70,6 +70,7 @@
   ui.start('#firebaseui-auth-container', uiConfig);
 </script>
 
+<script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
 
 <script type="text/javascript">
   initApp = function() {
@@ -77,6 +78,23 @@
       if (user) {
         // User is signed in.
         window.location.replace("#!/editor");
+        var editor = new MediumEditor('.editable', { placeholder : false}); 
+
+        var userId = firebase.auth().currentUser.uid;
+          if (userId) {
+              firebase.database().ref('users/' + userId + '/document').once("value").then(function(snapshot){
+                document.getElementsByClassName("editable")[0].innerHTML += snapshot.val();
+              });
+          }
+          
+        editor.subscribe('editableInput', function (event, editable) {
+          // Do some work
+          var userId = firebase.auth().currentUser.uid;
+          firebase.database().ref('users/' + userId).set({
+          "document": editable.innerHTML
+        });
+      });
+
       } else {
         window.location.replace("#!/home");
       }
@@ -90,19 +108,5 @@
   });
 </script>
 
-<script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
-<script type="text/javascript">
- window.addEventListener('load', function() {
-  var editor = new MediumEditor('.editable'); 
-
-  editor.subscribe('editableInput', function (event, editable) {
-    // Do some work
-    var userId = firebase.auth().currentUser.uid;
-    firebase.database().ref('users/' + userId).set({
-    "document": editable.innerHTML
-  });
-});
-  });
-</script>
 </body>
 </html>
