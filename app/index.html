@@ -34,6 +34,7 @@
 <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
      <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-auth.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-database.js"></script>
 
 <script>
   // Your web app's Firebase configuration
@@ -93,6 +94,14 @@
 <script type="text/javascript">
  window.addEventListener('load', function() {
   var editor = new MediumEditor('.editable'); 
+
+  editor.subscribe('editableInput', function (event, editable) {
+    // Do some work
+    var userId = firebase.auth().currentUser.uid;
+    firebase.database().ref('users/' + userId).set({
+    "document": editable.innerHTML
+  });
+});
   });
 </script>
 </body>
