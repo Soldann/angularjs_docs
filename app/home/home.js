@@ -11,6 +11,6 @@ angular.module('myApp.home', ['ngRoute'])
 }])
  
 // Home controller
-.controller('HomeCtrl', [function() {
- 
+.controller('HomeCtrl', ['$scope', function($scope) {
+    initApp();
 }]);

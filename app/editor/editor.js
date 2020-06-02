@@ -11,6 +11,6 @@ angular.module('myApp.editor', ['ngRoute'])
 }])
  
 // Home controller
-.controller('EditorCtrl', [function() {
- 
+.controller('EditorCtrl', ['$scope', function($scope) {
+    initApp();
 }]);

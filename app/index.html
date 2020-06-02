@@ -83,7 +83,7 @@
         var userId = firebase.auth().currentUser.uid;
           if (userId) {
               firebase.database().ref('users/' + userId + '/document').once("value").then(function(snapshot){
-                document.getElementsByClassName("editable")[0].innerHTML += snapshot.val();
+                document.getElementsByClassName("editable")[0].innerHTML = snapshot.val();
               });
           }
           
@@ -103,9 +103,6 @@
     });
   };
 
-  window.addEventListener('load', function() {
-    initApp();
-  });
 </script>
 
 </body>
