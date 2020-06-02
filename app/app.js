@@ -2,8 +2,11 @@
 
 // Declare app level module which depends on views, and core components
 angular.module('myApp', [
-  'ngRoute'
+  'ngRoute',
+  'myApp.home'
 ]).
 config(['$routeProvider', function($routeProvider) {
-  $routeProvider.otherwise({redirectTo: '/view1'});
+  $routeProvider.otherwise({
+      redirectTo: '/home'
+  });
 }]);
