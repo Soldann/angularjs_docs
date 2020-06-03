@@ -66,14 +66,14 @@
 
   // Initialize the FirebaseUI Widget using Firebase.
   var ui = new firebaseui.auth.AuthUI(firebase.auth());
-  // The start method will wait until the DOM is loaded.
+
 </script>
 
 <script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
 
 <script type="text/javascript">
   initApp = function() {
-    var editor = null;
+    var editor = null; //declare editor here so it can be destroyed later
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
         // User is signed in.
@@ -81,14 +81,14 @@
         editor = new MediumEditor('.editable'); 
 
         var userId = firebase.auth().currentUser.uid;
-          if (userId) {
+          if (userId) { //pull previous data from firebase
               firebase.database().ref('users/' + userId + '/document').once("value").then(function(snapshot){
                 editor.setContent(snapshot.val());
               });
           }
           
         editor.subscribe('editableInput', function (event, editable) {
-          // Do some work
+          //upload work on update
           var userId = firebase.auth().currentUser.uid;
           firebase.database().ref('users/' + userId).set({
           "document": editable.innerHTML
@@ -96,7 +96,7 @@
       });
 
       } else {
-        if (editor) {
+        if (editor) { //destroy editor before redirecting
           editor.destroy();
         }
         window.location.replace("#!/home");

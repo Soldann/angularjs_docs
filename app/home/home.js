@@ -13,5 +13,5 @@ angular.module('myApp.home', ['ngRoute'])
 // Home controller
 .controller('HomeCtrl', ['$scope', function($scope) {
     initApp();
-    ui.start('#firebaseui-auth-container', uiConfig);
+    ui.start('#firebaseui-auth-container', uiConfig); //load auth ui
 }]);
